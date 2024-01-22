@@ -9,6 +9,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
 
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -37,6 +38,7 @@ import { AuthModule } from './auth/auth.module';
     FilesModule,
 
     AuthModule,
+
   ],
   controllers: [],
   providers: [],
