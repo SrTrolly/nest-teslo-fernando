@@ -3,9 +3,10 @@ import { AuthService } from './auth.service';
 import { CreateUserDto, LoginUserDto } from './dto';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from './entities/user.entity';
-import { Auth, GetUser, RawHeaders, RoleProtected } from './decorators';
+import { Auth, RawHeaders, RoleProtected, GetUser } from './decorators';
 import { UserRoleGuard } from './guards/user-role/user-role.guard';
 import { ValidRoles } from './interfaces';
+
 
 
 
@@ -24,6 +25,14 @@ export class AuthController {
   @Post("login")
   loginUser(@Body() loginUserDto: LoginUserDto) {
     return this.authService.login(loginUserDto);
+  }
+
+  @Get("status")
+  @Auth()
+  checkAuthStatus(
+    @GetUser() user: User
+  ) {
+    return this.authService.checkAuthStatus(user);
   }
 
   @Get("private")
